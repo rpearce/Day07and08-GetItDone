@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A279b" minimumToolsVersion="Automatic">
+    <entity name="Todos" representedClassName="Todos" syncable="YES">
+        <attribute name="dateEntered" attributeType="Date" syncable="YES"/>
+        <attribute name="dateUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="todoCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="todoTitle" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Todos" positionX="-45" positionY="0" width="128" height="118"/>
+    </elements>
+</model>
