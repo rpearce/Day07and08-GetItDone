@@ -9,14 +9,14 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "Todos.h"
+#import "DetailViewController.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) AppDelegate            *appDelegate;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, weak)   IBOutlet UITextField   *titleTextField;
-@property (nonatomic, weak)   IBOutlet UITableView   *todosTableView;
 @property (nonatomic, strong) NSArray                *todosArray;
+@property (nonatomic, weak)   IBOutlet UITableView   *todosTableView;
 
 @end
 
@@ -24,20 +24,11 @@
 
 #pragma mark - Core Data Methods
 
-- (void)addTodo:(NSString *)todoTitle {
+- (IBAction)addRecord:(id)sender {
     Todos *newTodo = (Todos *)[NSEntityDescription insertNewObjectForEntityForName:@"Todos" inManagedObjectContext:_managedObjectContext];
-    newTodo.todoTitle = todoTitle;
+    newTodo.todoTitle = @"";
     newTodo.dateEntered = [NSDate date];
-    newTodo.userID = @"Robert";
-    [_appDelegate saveContext];
-};
-
-- (void)tempLogTodos {
-    NSLog(@"%li", _todosArray.count);
-    for (Todos *todo in _todosArray) {
-        NSLog(@"%@", todo.todoTitle);
-        NSLog(@"%@", todo);
-    }
+    newTodo.userID = @"System";
 }
 
 - (NSArray *)fetchTodos {
@@ -50,11 +41,23 @@
 
 #pragma mark - Interactivity Methods
 
-- (IBAction)addTodoButtonPressed:(UIButton *)button {
-    [self addTodo:_titleTextField.text];
-    _todosArray = [self fetchTodos];
-    _titleTextField.text = @"";
-    [_todosTableView reloadData];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetailViewController *destController = [segue destinationViewController];
+    if ([[segue identifier] isEqualToString:@"segueEditTodo"]) {
+        NSIndexPath *indexPath = [_todosTableView indexPathForSelectedRow];
+        Todos *currentTodo = _todosArray[indexPath.row];
+        destController.currentTodo = currentTodo;
+    } else if ([[segue identifier] isEqualToString:@"segueAddTodo"]) {
+        destController.currentTodo = nil;
+    }
+}
+
+//- (IBAction)deleteTodo:(id)sender {
+//    Todos *todoToDelete =
+//}
+
+- (IBAction)saveButtonPressed:(id)sender {
+    [_appDelegate saveContext];
 }
 
 #pragma mark - TableView Methods
@@ -65,13 +68,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoCell"];
-    Todos *todo = [_todosArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = todo.todoTitle;
+    Todos *currentTodo = _todosArray[indexPath.row];
+    cell.textLabel.text = currentTodo.todoTitle;
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSLog(@"%@li", indexPath);
 }
 
 #pragma mark - Life Cycle Methods
@@ -80,7 +79,19 @@
     [super viewDidLoad];
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _managedObjectContext = _appDelegate.managedObjectContext;
+    _todosArray = [[NSArray alloc] init];
     _todosArray = [self fetchTodos];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _todosArray = [self fetchTodos];
+    [_todosTableView reloadData];
+//    NSLog(@"%li", _todosArray.count);
+//    for (Todos *todo in _todosArray) {
+//        NSLog(@"%@", todo.todoTitle);
+//        NSLog(@"%@", todo);
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

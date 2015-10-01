@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F400268B1BBCD8430063813A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F400268A1BBCD8430063813A /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		F4D387C71BBB006B00C572FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D387C61BBB006B00C572FC /* main.m */; };
 		F4D387CA1BBB006B00C572FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D387C91BBB006B00C572FC /* AppDelegate.m */; };
 		F4D387CD1BBB006B00C572FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D387CC1BBB006B00C572FC /* ViewController.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40026891BBCD8430063813A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		F400268A1BBCD8430063813A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F4D387C21BBB006B00C572FC /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D387C61BBB006B00C572FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4D387C81BBB006B00C572FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 				F4D387C91BBB006B00C572FC /* AppDelegate.m */,
 				F4D387CB1BBB006B00C572FC /* ViewController.h */,
 				F4D387CC1BBB006B00C572FC /* ViewController.m */,
+				F40026891BBCD8430063813A /* DetailViewController.h */,
+				F400268A1BBCD8430063813A /* DetailViewController.m */,
 				F4D387CE1BBB006B00C572FC /* Main.storyboard */,
 				F4D387D41BBB006B00C572FC /* Assets.xcassets */,
 				F4D387D61BBB006B00C572FC /* LaunchScreen.storyboard */,
@@ -176,6 +181,7 @@
 				F4D387E41BBB03DF00C572FC /* Todos.m in Sources */,
 				F4D387CA1BBB006B00C572FC /* AppDelegate.m in Sources */,
 				F4D387C71BBB006B00C572FC /* main.m in Sources */,
+				F400268B1BBCD8430063813A /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +330,7 @@
 				F4D387DE1BBB006B00C572FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
